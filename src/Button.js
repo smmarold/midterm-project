@@ -1,18 +1,17 @@
-import PropTypes from 'prop-types';
+import React, { useContext } from 'react';
 import './App.css';
+import { ThemeContext, themes } from './context/ThemeContext';
 
 const Button = (props) => {
+  const {theme} = useContext(ThemeContext)
+  const buttonClass = theme === themes.dark ? "button" : "button-dark";
 
-    return <button className={`button`} style={{backgroundColor: props.color}} onClick={()=>props.onHandleClick()}>{props.children}</button>
+    return (
+      <div className={{buttonClass}} onClick={()=>props.onHandleClick()}>
+        {props.children}
+      </div>
+    )
 }
 
-Button.propTypes = {
-    color: PropTypes.string,
-    children: PropTypes.node.isRequired,
-  };
-  
-Button.defaultProps = {
-    color: "#fff",
-  };
 
 export default Button;

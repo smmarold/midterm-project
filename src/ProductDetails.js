@@ -1,8 +1,11 @@
 import useFetch from "./hooks/useFetch";
 import Loading from "./components/Loading"
 import { useParams, useNavigate } from "react-router-dom";
+import { ThemeContext } from './context/ThemeContext';
+import { useContext } from "react";
 
 const ProductDetails = (props) => {
+    const {theme} = useContext(ThemeContext);
     const {productId} = useParams();
     const {data, loading, error} = useFetch(`products/${productId}`);
     const navigate = useNavigate();
@@ -21,7 +24,7 @@ const ProductDetails = (props) => {
     }
 
     return (
-        <div className="product-details-box">
+        <div className="product-details-box" style={({backgroundColor: theme.background, color: theme.forground})}>
             <div className="product">
                 <img className="full-image" src={data.image} alt={data.id} />
                 <div className="product-info">

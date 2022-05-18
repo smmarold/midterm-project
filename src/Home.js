@@ -1,9 +1,12 @@
+import React, { useContext } from 'react';
 import './App.css';
+import { ThemeContext } from './context/ThemeContext';
 
 const Home = (props) => {
+    const {theme} = useContext(ThemeContext);
     
     return <div className='homePage'>
-            <div>
+            <div style={({backgroundColor: theme.background, color: theme.forground})} >
                 <h1>Welcome!</h1>
                 <h2>We Sell Stuff Here</h2>
                 <p>If we show you a cute puppy, will you buy something?</p>
